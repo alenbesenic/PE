@@ -16,6 +16,14 @@ let data ={
             Event_Price: 0 ,
             Event_URL: 'https://www.facebook.com/events/2474358526138005'
         },
+        {
+            Location : 'Klub Kotač',
+            Date: '25. Travnja 2020.',
+            Description:'Klub Kotač/Kotač TV DC Rojc/Pula subota 25.4.2020. 22:00h - livestream Kotač Facebook/Twitch',
+            Event_Name:'Corona Room #18: Fikcio Monger - live',
+            Event_Price: 0 ,
+            Event_URL: 'https://www.facebook.com/events/830668674085593'
+        },
 
     ]
 }
