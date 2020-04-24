@@ -11,4 +11,5 @@ app.get('/events', (req, res) => {
 })
 app.get('/category', (req, res)=>res.json(data.Category))
 app.get('/category/outdoor', (req, res)=>res.json(data.Category.Outdoor))
+app.get('/category/nightlife', (req, res)=>res.json(data.Category.NightLife))
 app.listen(port, () => console.log(`Slušam na portu ${port}!`))
