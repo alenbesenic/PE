@@ -6,7 +6,8 @@ let data ={
             Description:'Sea kayaking in the "wild side" of Pula, visit of the cliffs, climbing on the rocks and jumping off (optional), short break at the beach and time for snorkelling, swimming, relaxing. If possible, visit of the cave in kayaks, illuminated with head lights. Group size: 8 people!',
             Event_Name:'Cliffs & Cave Kayaking (Pula)',
             Event_Price: 380,
-            Event_URL: 'https://www.pulaoutdoor.com/events/cliffs-cave-kayaking-pula'
+            Event_URL: 'https://www.pulaoutdoor.com/events/cliffs-cave-kayaking-pula',
+            Category:'Outdoor'
         },
         {
             Location : 'Discotheque Magnus Pazin',
@@ -14,7 +15,8 @@ let data ={
             Description:'Vojko V dolazi u Pazin, naravno, u Magnus! Uz nastup na Sea Star festivalu, izvođaču će ovo biti jedini nastup u Istri do jeseni 2020. -> nepropustivo!',
             Event_Name:'VOJKO V ⎮ Magnus ⎮ Odgođeno za jesen',
             Event_Price: 0 ,
-            Event_URL: 'https://www.facebook.com/events/2474358526138005'
+            Event_URL: 'https://www.facebook.com/events/2474358526138005',
+            Category:'NightLife'
         },
         {
             Location : 'Klub Kotač',
@@ -22,7 +24,8 @@ let data ={
             Description:'Klub Kotač/Kotač TV DC Rojc/Pula subota 25.4.2020. 22:00h - livestream Kotač Facebook/Twitch',
             Event_Name:'Corona Room #18: Fikcio Monger - live',
             Event_Price: 0 ,
-            Event_URL: 'https://www.facebook.com/events/830668674085593'
+            Event_URL: 'https://www.facebook.com/events/830668674085593',
+            Category:'NightLife'
         },
 
     ]
