@@ -7,7 +7,8 @@ let data ={
             Event_Name:'Cliffs & Cave Kayaking (Pula)',
             Event_Price: 380,
             Event_URL: 'https://www.pulaoutdoor.com/events/cliffs-cave-kayaking-pula',
-            Category:'Outdoor'
+            Category:'Outdoor',
+            Status:'Ongoing'
         },
         {
             Location : 'Discotheque Magnus Pazin',
@@ -16,7 +17,8 @@ let data ={
             Event_Name:'VOJKO V ⎮ Magnus ⎮ Odgođeno za jesen',
             Event_Price: 0 ,
             Event_URL: 'https://www.facebook.com/events/2474358526138005',
-            Category:'NightLife'
+            Category:'NightLife',
+            Status:'Canceled'
         },
         {
             Location : 'Klub Kotač',
@@ -25,7 +27,8 @@ let data ={
             Event_Name:'Corona Room #18: Fikcio Monger - live',
             Event_Price: 0 ,
             Event_URL: 'https://www.facebook.com/events/830668674085593',
-            Category:'NightLife'
+            Category:'NightLife',
+            Status:'Ongoing'
         },
     ],
     Category:{
@@ -61,7 +64,6 @@ let data ={
         ]
     }
 
-    
 }
 
 export default data
