@@ -1,9 +1,13 @@
 import express from 'express';
 import data from './memory'
+import cors from 'cors'
 
 
 const app = express() 
 const port = 3000 
+
+app.use(cors())
+app.use(express.json())
 
 //svi eventi
 app.get('/events', (req, res) => {
