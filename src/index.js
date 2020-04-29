@@ -5,13 +5,17 @@ import data from './memory'
 const app = express() 
 const port = 3000 
 
-
+//svi eventi
 app.get('/events', (req, res) => {
     res.json(data.event)
 })
+
+//kategorije
 app.get('/category', (req, res)=>res.json(data.Category))
 app.get('/category/outdoor', (req, res)=>res.json(data.Category.Outdoor))
 app.get('/category/nightlife', (req, res)=>res.json(data.Category.NightLife))
+
+//otkazani eventi
 app.get('/canceledEvents', (req,res)=>{
     for(var item of data.event){
         if(item.Status === 'Canceled'){
@@ -19,6 +23,8 @@ app.get('/canceledEvents', (req,res)=>{
         }
     }
 })
+
+//nadolazeći eventi po datumima
 app.get('/upcomingEvents', (req, res)=>{
     let podaci = data.event
     podaci.sort((a, b)=>{
@@ -31,5 +37,16 @@ app.get('/upcomingEvents', (req, res)=>{
         return 0;
     })
     res.json(podaci)
+})
+
+//za dohvat jednog eventa
+app.get('/events/:id', (req, res)=>{
+    let id = req.params.id
+    let doc = data.event
+    for(var item of doc){
+        if(id==item.id){
+            res.json(item)
+        }
+    }
 })
 app.listen(port, () => console.log(`Slušam na portu ${port}!`))

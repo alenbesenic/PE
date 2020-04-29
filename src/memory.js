@@ -1,6 +1,7 @@
 let data ={
     event:[
-        {
+        {   
+            id:10001,
             Location : 'Valovine beach (with ski lift), Stoja 37, 52100, Pula, Croatia',
             Date: '05.01.2020',
             Description:'Sea kayaking in the "wild side" of Pula, visit of the cliffs, climbing on the rocks and jumping off (optional), short break at the beach and time for snorkelling, swimming, relaxing. If possible, visit of the cave in kayaks, illuminated with head lights. Group size: 8 people!',
@@ -10,7 +11,8 @@ let data ={
             Category:'Outdoor',
             Status:'Ongoing'
         },
-        {
+        {   
+            id:10002,
             Location : 'Discotheque Magnus Pazin',
             Date: '10.30.2020',
             Description:'Vojko V dolazi u Pazin, naravno, u Magnus! Uz nastup na Sea Star festivalu, izvođaču će ovo biti jedini nastup u Istri do jeseni 2020. -> nepropustivo!',
@@ -20,7 +22,8 @@ let data ={
             Category:'NightLife',
             Status:'Canceled'
         },
-        {
+        {   
+            id:10003,
             Location : 'Klub Kotač',
             Date: '04.25.2020',
             Description:'Klub Kotač/Kotač TV DC Rojc/Pula subota 25.4.2020. 22:00h - livestream Kotač Facebook/Twitch',
@@ -34,6 +37,7 @@ let data ={
     Category:{
         Outdoor:[
             {
+                id:10001,
                 Location : 'Valovine beach (with ski lift), Stoja 37, 52100, Pula, Croatia',
                 Date: '05.01.2020',
                 Description:'Sea kayaking in the "wild side" of Pula, visit of the cliffs, climbing on the rocks and jumping off (optional), short break at the beach and time for snorkelling, swimming, relaxing. If possible, visit of the cave in kayaks, illuminated with head lights. Group size: 8 people!',
@@ -44,6 +48,7 @@ let data ={
         ],
         NightLife:[
             {
+                id:10002,
                 Location : 'Discotheque Magnus Pazin',
                 Date: '10.30.2020',
                 Description:'Vojko V dolazi u Pazin, naravno, u Magnus! Uz nastup na Sea Star festivalu, izvođaču će ovo biti jedini nastup u Istri do jeseni 2020. -> nepropustivo!',
@@ -53,6 +58,7 @@ let data ={
                 Category:'NightLife'
             },
             {
+                id:10003,
                 Location : 'Klub Kotač',
                 Date: '04.25.2020',
                 Description:'Klub Kotač/Kotač TV DC Rojc/Pula subota 25.4.2020. 22:00h - livestream Kotač Facebook/Twitch',
