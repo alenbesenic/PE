@@ -19,4 +19,17 @@ app.get('/canceledEvents', (req,res)=>{
         }
     }
 })
+app.get('/upcomingEvents', (req, res)=>{
+    let podaci = data.event
+    podaci.sort((a, b)=>{
+        if(a.Date>b.Date){
+            return 1;
+        }
+        if(a.Date<b.Date){
+            return -1;
+        }
+        return 0;
+    })
+    res.json(podaci)
+})
 app.listen(port, () => console.log(`Slušam na portu ${port}!`))
