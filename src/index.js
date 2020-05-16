@@ -18,6 +18,7 @@ app.get('/events', (req, res) => {
 app.get('/category', (req, res)=>res.json(data.Category))
 app.get('/category/outdoor', (req, res)=>res.json(data.Category.Outdoor))
 app.get('/category/nightlife', (req, res)=>res.json(data.Category.NightLife))
+app.get('/category/library', (req, res)=>res.json(data.Category.Library))
 
 //otkazani eventi
 app.get('/canceledEvents', (req,res)=>{
