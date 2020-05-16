@@ -70,7 +70,9 @@ let data ={
                 Event_Name:'VOJKO V ⎮ Magnus ⎮ Odgođeno za jesen',
                 Event_Price: 0 ,
                 Event_URL: 'https://www.facebook.com/events/2474358526138005',
-                Category:'NightLife'
+                Category:'NightLife',
+                Status:'Canceled',
+                PictureURL:'https://pazinstina.info/images/vojko_2.jpg'
             },
             {
                 id:10003,
@@ -80,7 +82,9 @@ let data ={
                 Event_Name:'Corona Room #18: Fikcio Monger - live',
                 Event_Price: 0 ,
                 Event_URL: 'https://www.facebook.com/events/830668674085593',
-                Category:'NightLife'
+                Category:'NightLife',
+                Status:'Ongoing',
+            PictureURL:'https://scontent.fzag1-1.fna.fbcdn.net/v/t1.0-9/94030770_1483323375174653_3687779909574328320_n.jpg?_nc_cat=102&_nc_sid=b386c4&_nc_ohc=fovWYeC2uesAX_5hPWx&_nc_ht=scontent.fzag1-1.fna&oh=7bedbc7fd72abbf1736a2e046ab6c676&oe=5EE308ED'
             }
         ]
     }
