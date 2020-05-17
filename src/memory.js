@@ -9,7 +9,7 @@ let data ={
             Event_Price: 380,
             Event_URL: 'https://www.pulaoutdoor.com/events/cliffs-cave-kayaking-pula',
             Category:'Outdoor',
-            Status:'Ongoing',
+            Status:'Canceled',
             PictureURL:'https://media-cdn.tripadvisor.com/media/photo-m/1280/13/7d/8e/52/the-cave.jpg'
         },
         {   

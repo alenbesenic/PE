@@ -14,6 +14,7 @@ app.get('/events', (req, res) => {
     res.json(data.event)
 })
 
+
 //kategorije
 app.get('/category', (req, res)=>res.json(data.Category))
 app.get('/category/outdoor', (req, res)=>res.json(data.Category.Outdoor))
@@ -22,11 +23,13 @@ app.get('/category/library', (req, res)=>res.json(data.Category.Library))
 
 //otkazani eventi
 app.get('/canceledEvents', (req,res)=>{
+    let canceled = []
     for(var item of data.event){
         if(item.Status === 'Canceled'){
-            res.json(item)
+            canceled.push(item)
         }
     }
+    res.json(canceled)
 })
 
 //nadolazeći eventi po datumima
