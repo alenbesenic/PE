@@ -62,7 +62,9 @@ app.get('/events/:id', (req, res)=>{
 if(process.env.NODE_ENV === 'producton'){
     app.use(express.static(__dirname + '/public/'));
 
-    app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
+    app.get(/.*/, (req, res) => {
+        return res.sendFile(__dirname + '/public/index.html');
+    });
 }
 
 app.listen(port, () => console.log(`Slušam na portu ${port}!`))
