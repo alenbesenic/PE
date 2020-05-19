@@ -4,7 +4,7 @@ const cors = require ('cors')
 
 
 const app = express() 
-const port = 40321 
+const port = process.env.PORT || 3000
 
 app.use(cors())
 app.use(express.json())
