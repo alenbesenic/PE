@@ -1,6 +1,6 @@
-import express from 'express';
-import data from './memory'
-import cors from 'cors'
+const express = require ('express')
+const data = require ('./memory')
+const cors = require ('cors')
 
 
 const app = express() 
