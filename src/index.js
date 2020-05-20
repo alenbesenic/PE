@@ -60,7 +60,7 @@ app.get('/events/:id', (req, res)=>{
 
 //Production
 if(process.env.NODE_ENV === 'producton'){
-    app.use(express.static(__dirname + '/public/'));
+    app.use(express.static(__dirname + './public/'));
 
   
 }
