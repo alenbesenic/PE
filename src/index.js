@@ -4,7 +4,7 @@ const cors = require ('cors')
 
 
 const app = express() 
-const port = process.env.PORT || 3000
+
 
 app.use(cors())
 app.use(express.json())
@@ -62,7 +62,8 @@ app.get('/events/:id', (req, res)=>{
 if(process.env.NODE_ENV === 'producton'){
     app.use(express.static(__dirname + './public/'));
 
-  
+  app.get(/.*/, (req, res)=> res.sendFile(__dirname +'./public/index.html' ));
 }
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => console.log(`Slušam na portu ${port}!`))
