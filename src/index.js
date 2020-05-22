@@ -1,10 +1,14 @@
-const express = require ('express')
-const data = require ('./memory')
-const cors = require ('cors')
+const express = require('express');
+const data = require('./memory')
+const cors = require('cors')
+const path = require('path')
 
 
 const app = express() 
 
+
+
+const port = process.env.PORT || 3000 
 
 app.use(cors())
 app.use(express.json())
@@ -58,12 +62,16 @@ app.get('/events/:id', (req, res)=>{
     }
 })
 
-//Production
-if(process.env.NODE_ENV === 'producton'){
-    app.use(express.static(__dirname + './public/'));
 
-  app.get(/.*/, (req, res)=> res.sendFile(__dirname +'./public/index.html' ));
-}
-const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`Slušam na portu ${port}!`))
+  if (process.env.NODE_ENV === 'production') {
+    // Static folder
+    app.use(express.static(path.join(__dirname, "../public")))
+  
+    // Handle SPA
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../public', 'index.html'))
+    });
+  }
+
+app.listen(process.env.PORT || port, () => console.log(`Slušam na portu ${port}!`))
