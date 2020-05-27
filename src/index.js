@@ -14,6 +14,24 @@ const port = process.env.PORT || 3000
 app.use(cors())
 app.use(express.json())
 
+//svi eventi
+app.get('/events', async(req, res) => {
+    let db = await connect();
+    let query = req.query
+
+    if (query.status) {
+        let canceledEvents = await db.collection("Events").find({ Status: "Canceled" })
+        let cEvents = await canceledEvents.toArray()
+
+        res.json(cEvents)
+    } else {
+        let cursor = await db.collection("Events").find()
+        let results = await cursor.toArray()
+
+        res.json(results)
+    }
+})
+
 //za dohvat jednog eventa
 app.get('/events/:id', async(req, res) => {
     let id = req.params.id
@@ -21,30 +39,9 @@ app.get('/events/:id', async(req, res) => {
     let db = await connect()
 
     let doc = await db.collection("Events").findOne({ _id: mongo.ObjectId(id) })
+    console.log("ID", id)
 
     res.json(doc)
-})
-
-//otkazani eventi
-app.get('/events/:status', async(req, res) => {
-    let status = req.params.status
-
-    let db = await connect()
-
-    let doc = await db.collection("Events").find({ Status: status })
-    let result = await doc.toArray()
-
-    res.json(result)
-})
-
-//svi eventi
-app.get('/events', async(req, res) => {
-    let db = await connect();
-
-    let cursor = await db.collection("Events").find()
-    let results = await cursor.toArray()
-
-    res.json(results)
 })
 
 //kategorije
