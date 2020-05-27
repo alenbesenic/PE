@@ -3,6 +3,8 @@ const data = require('./memory')
 const cors = require('cors')
 const path = require('path')
 import connect from './database'
+import mongo from "mongodb"
+
 
 
 const app = express()
@@ -11,6 +13,29 @@ const port = process.env.PORT || 3000
 
 app.use(cors())
 app.use(express.json())
+
+//za dohvat jednog eventa
+app.get('/events/:id', async(req, res) => {
+    let id = req.params.id
+
+    let db = await connect()
+
+    let doc = await db.collection("Events").findOne({ _id: mongo.ObjectId(id) })
+
+    res.json(doc)
+})
+
+//otkazani eventi
+app.get('/events/:status', async(req, res) => {
+    let status = req.params.status
+
+    let db = await connect()
+
+    let doc = await db.collection("Events").find({ Status: status })
+    let result = await doc.toArray()
+
+    res.json(result)
+})
 
 //svi eventi
 app.get('/events', async(req, res) => {
@@ -22,23 +47,36 @@ app.get('/events', async(req, res) => {
     res.json(results)
 })
 
-
 //kategorije
 app.get('/category', (req, res) => res.json(data.Category))
-app.get('/category/outdoor', (req, res) => res.json(data.Category.Outdoor))
-app.get('/category/nightlife', (req, res) => res.json(data.Category.NightLife))
-app.get('/category/library', (req, res) => res.json(data.Category.Library))
 
-//otkazani eventi
-app.get('/canceledEvents', (req, res) => {
-    let canceled = []
-    for (var item of data.event) {
-        if (item.Status === 'Canceled') {
-            canceled.push(item)
-        }
-    }
-    res.json(canceled)
+app.get('/category/outdoor', async(req, res) => {
+    let db = await connect()
+
+    let cursor = await db.collection("Events").find({ Category: "Outdoor" })
+    let results = await cursor.toArray()
+
+    res.json(results)
 })
+
+app.get('/category/nightlife', async(req, res) => {
+    let db = await connect()
+
+    let cursor = await db.collection("Events").find({ Category: "NightLife" })
+    let results = await cursor.toArray()
+
+    res.json(results)
+})
+
+app.get('/category/library', async(req, res) => {
+    let db = await connect()
+
+    let cursor = await db.collection("Events").find({ Category: "Library" })
+    let results = await cursor.toArray()
+
+    res.json(results)
+})
+
 
 //nadolazeći eventi po datumima
 app.get('/upcomingEvents', (req, res) => {
@@ -55,19 +93,8 @@ app.get('/upcomingEvents', (req, res) => {
     res.json(podaci)
 })
 
-//za dohvat jednog eventa
-app.get('/events/:id', (req, res) => {
-    let id = req.params.id
-    let doc = data.event
-    for (var item of doc) {
-        if (id == item.id) {
-            res.json(item)
-        }
-    }
-})
 
-
-
+//Hosting
 if (process.env.NODE_ENV === 'production') {
     // Static folder
     app.use(express.static(path.join(__dirname, "../public")))
