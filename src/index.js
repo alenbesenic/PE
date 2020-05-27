@@ -19,11 +19,19 @@ app.get('/events', async(req, res) => {
     let db = await connect();
     let query = req.query
 
+    //Za otkazane evente
     if (query.status) {
-        let canceledEvents = await db.collection("Events").find({ Status: "Canceled" })
+        let canceledEvents = await db.collection("Events").find({ Status: query.status })
         let cEvents = await canceledEvents.toArray()
 
         res.json(cEvents)
+    }
+    //Za nadolazeće evente
+    else if (query.date) {
+        let upcomingEvents = await db.collection("Events").find({ Date: { $gte: Date.now() } })
+        let uEvents = await upcomingEvents.toArray()
+
+        res.json(uEvents)
     } else {
         let cursor = await db.collection("Events").find()
         let results = await cursor.toArray()
@@ -39,7 +47,6 @@ app.get('/events/:id', async(req, res) => {
     let db = await connect()
 
     let doc = await db.collection("Events").findOne({ _id: mongo.ObjectId(id) })
-    console.log("ID", id)
 
     res.json(doc)
 })
@@ -73,23 +80,6 @@ app.get('/category/library', async(req, res) => {
 
     res.json(results)
 })
-
-
-//nadolazeći eventi po datumima
-app.get('/upcomingEvents', (req, res) => {
-    let podaci = data.event
-    podaci.sort((a, b) => {
-        if (a.Date > b.Date) {
-            return 1;
-        }
-        if (a.Date < b.Date) {
-            return -1;
-        }
-        return 0;
-    })
-    res.json(podaci)
-})
-
 
 //Hosting
 if (process.env.NODE_ENV === 'production') {
