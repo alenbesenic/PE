@@ -15,7 +15,8 @@
     "express": "^4.17.1",
     "heroku": "^7.41.1",
     "mongodb": "^3.5.7",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "puppeteer": "^3.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
