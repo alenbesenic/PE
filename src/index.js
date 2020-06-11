@@ -59,7 +59,7 @@ app.get('/events', async(req, res) => {
     }
     //Za nadolazeće evente
     else if (query.date) {
-        let upcomingEvents = await db.collection("Events").find({ Date: { $gte: Date.now() } })
+        let upcomingEvents = await db.collection("Events").find({ Date_Start: { $gte: Date.now() } })
         let uEvents = await upcomingEvents.toArray()
 
         res.json(uEvents)
