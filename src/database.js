@@ -19,7 +19,7 @@ export default () => {
                 if (err) {
                     reject("Došlo je do greške prilikom spajanja", err)
                 } else {
-                    console.log("Uspješno spajanje")
+                    console.log("Uspješno spajanje na bazu")
                     db = client.db("PulaEvents")
                     resolve(db)
                 }

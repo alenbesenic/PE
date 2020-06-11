@@ -1,9 +1,13 @@
+import dotenv from 'dotenv'
+dotenv.config();
+
 const express = require('express');
 const data = require('./memory')
 const cors = require('cors')
 const path = require('path')
 import connect from './database'
 import mongo from "mongodb"
+import auth from './auth'
 
 
 
@@ -13,6 +17,33 @@ const port = process.env.PORT || 3000
 
 app.use(cors())
 app.use(express.json())
+//autentifikacija
+app.get('/tajna',[auth.verify], (req, res) =>{
+    
+
+    res.json({message: 'Ovo je tajna' + req.jwt.username})
+})
+app.post('/auth', async (req, res) =>{
+    let user = req. body;
+   try {
+    let result = await auth.authenticateUser(user.username, user.password);
+    res.json(result);
+   }
+   catch (e){
+    res.status(403).json({error: e.message});
+   }
+});
+
+app.post("/users", async (req, res)=> {
+    let userData = req.body;
+    let id; 
+    try{
+    id = await auth.registerUser(userData)
+    } catch(e){
+        res.status(500).json({error: e.message});
+    }
+    res.json({id: id})
+})
 
 //svi eventi
 app.get('/events', async(req, res) => {
