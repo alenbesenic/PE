@@ -17,32 +17,31 @@ const port = process.env.PORT || 3000
 
 app.use(cors())
 app.use(express.json())
-//autentifikacija
-app.get('/tajna',[auth.verify], (req, res) =>{
-    
+    //autentifikacija
+app.get('/tajna', [auth.verify], (req, res) => {
 
-    res.json({message: 'Ovo je tajna' + req.jwt.username})
+
+    res.json({ message: 'Ovo je tajna' + req.jwt.username })
 })
-app.post('/auth', async (req, res) =>{
-    let user = req. body;
-   try {
-    let result = await auth.authenticateUser(user.username, user.password);
-    res.json(result);
-   }
-   catch (e){
-    res.status(403).json({error: e.message});
-   }
+app.post('/auth', async(req, res) => {
+    let user = req.body;
+    try {
+        let result = await auth.authenticateUser(user.username, user.password);
+        res.json(result);
+    } catch (e) {
+        res.status(403).json({ error: e.message });
+    }
 });
 
-app.post("/users", async (req, res)=> {
+app.post("/users", async(req, res) => {
     let userData = req.body;
-    let id; 
-    try{
-    id = await auth.registerUser(userData)
-    } catch(e){
-        res.status(500).json({error: e.message});
+    let id;
+    try {
+        id = await auth.registerUser(userData)
+    } catch (e) {
+        res.status(500).json({ error: e.message });
     }
-    res.json({id: id})
+    res.json({ id: id })
 })
 
 //svi eventi
@@ -83,7 +82,15 @@ app.get('/events/:id', async(req, res) => {
 })
 
 //kategorije
-app.get('/category', (req, res) => res.json(data.Category))
+app.get('/category', async(req, res) => {
+    let db = await connect();
+    let query = req.query;
+
+    let categorizedEvents = await db.collection("Events").find({ Category: query.category })
+    let catEvents = await categorizedEvents.toArray();
+
+    res.json(catEvents);
+})
 
 app.get('/category/outdoor', async(req, res) => {
     let db = await connect()
@@ -94,22 +101,49 @@ app.get('/category/outdoor', async(req, res) => {
     res.json(results)
 })
 
-app.get('/category/nightlife', async(req, res) => {
+app.get('/category/music', async(req, res) => {
     let db = await connect()
 
-    let cursor = await db.collection("Events").find({ Category: "NightLife" })
+    let cursor = await db.collection("Events").find({ Category: "Music" })
     let results = await cursor.toArray()
 
     res.json(results)
 })
 
-app.get('/category/library', async(req, res) => {
+app.get('/category/entertainment', async(req, res) => {
     let db = await connect()
 
-    let cursor = await db.collection("Events").find({ Category: "Library" })
+    let cursor = await db.collection("Events").find({ Category: "Entertainment" })
     let results = await cursor.toArray()
 
     res.json(results)
+})
+
+app.get('/category/museum', async(req, res) => {
+    let db = await connect();
+
+    let cursor = await db.collection("Events").find({ Category: "Museum" })
+    let results = await cursor.toArray()
+
+    res.json(results)
+})
+
+app.get('/category/restaurant', async(req, res) => {
+    let db = await connect();
+
+    let cursor = await db.collection("Events").find({ Category: "Restaurant" })
+    let results = await cursor.toArray();
+
+    res.json(results);
+})
+
+app.get('/category/aquarium', async(req, res) => {
+    let db = await connect();
+
+    let cursor = await db.collection("Events").find({ Category: "Aquarium" });
+    let results = await cursor.toArray();
+
+    res.json(results);
 })
 
 //Hosting
