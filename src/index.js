@@ -18,11 +18,7 @@ const port = process.env.PORT || 3000
 app.use(cors())
 app.use(express.json())
     //autentifikacija
-app.get('/tajna', [auth.verify], (req, res) => {
 
-
-    res.json({ message: 'Ovo je tajna' + req.jwt.username })
-})
 app.post('/auth', async(req, res) => {
     let user = req.body;
     try {
