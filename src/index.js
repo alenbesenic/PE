@@ -48,8 +48,7 @@ app.post("/users", async(req, res) => {
 app.get('/events', async(req, res) => {
     let db = await connect();
     let query = req.query
-
-    //Za otkazane evente
+        //Za otkazane evente
     if (query.status) {
         let canceledEvents = await db.collection("Events").find({ Status: query.status })
         let cEvents = await canceledEvents.toArray()
@@ -65,6 +64,8 @@ app.get('/events', async(req, res) => {
     } else {
         let cursor = await db.collection("Events").find()
         let results = await cursor.toArray()
+
+        let pastEvents = await db.collection("Events").updateMany({ Date_End: { $lt: Date.now() } }, { $set: { Status: "Done" } })
 
         res.json(results)
     }
@@ -145,6 +146,7 @@ app.get('/category/aquarium', async(req, res) => {
 
     res.json(results);
 })
+
 
 //Hosting
 if (process.env.NODE_ENV === 'production') {
