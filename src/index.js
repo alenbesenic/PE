@@ -57,7 +57,13 @@ app.get('/events', async(req, res) => {
         let uEvents = await upcomingEvents.toArray()
 
         res.json(uEvents)
-    } else {
+    }else if(query.price){
+        let freeEvents = await db.collection("Events").find({Event_Price: query.price})
+        let fEvents = await freeEvents.toArray()
+
+        res.json(fEvents)
+    } 
+    else {
         let cursor = await db.collection("Events").find()
         let results = await cursor.toArray()
 
